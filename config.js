@@ -2,11 +2,11 @@ const path = require ('path');
 
 require('dotenv').config()
 
-const {  moUser, moPass, mongoUri  } = require('./enviroment.js');
+const {  mongoUser, mongoPass, mongoDb, mongoUri  } = require('./enviroment.js');
 
-const mongoUser= moUser;
-const mongoPass = moPass;
-const database = "ecommerce";
+const user= mongoUser;
+const pass = mongoPass;
+const database = mongoDb;
 const urlAtlas = mongoUri;
 
 

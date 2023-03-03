@@ -14,6 +14,9 @@ const { mainPage } = require('./pages/loadPages.js');
 
 const path = require ('path');
 
+const { configPort } = require('./enviroment.js');
+
+
 const app = express();
 const server = createServer(app);
 const io = socketIo(server, {cors: {origin:"*"}});
@@ -66,35 +69,11 @@ io.on('connection', async client => {
     });
 });
 
-const PORT = 8080;
-server.listen(PORT, () => {
+
+server.listen(configPort.p, () => {
     console.log(`Servidor http WebSocket escuchando en el puerto ${server.address().port}`);
 });
 server.on("error", error => console.log(`Error en servidor ${error}`));
 
 
 
-// const yargs = require('yargs/yargs')(process.argv.slice(2));
-
-// const config = yargs.alias(
-
-//     {
-//         p: 'puerto',
-//     },
-// )
-// .default({
-//     puerto: 8080,
-// }).argv; 
-
-// console.log(JSON.stringify(config, null, 2));
-
-
-require('dotenv').config();
-
-const config = {
-
-    mongo: process.env.MONGO_URL_ATLAS,
-
-};
-
-console.log(JSON.stringify(config, null, 2));
