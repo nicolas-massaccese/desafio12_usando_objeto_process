@@ -6,6 +6,7 @@ const expressSession = require('express-session');
 const { productosApiRouter } = require('./api/productos.js');
 const { mensajesApiRouter } = require('./api/mensajes.js');
 const { userApiRouter } = require('./api/users.js');
+const { randomsApiRouter } = require('./api/randoms.js');
 
 const { productSocket } = require('./webSocket/productosWS.js');
 const { messageSocket } = require('./webSocket/mensajesWS.js');
@@ -34,6 +35,7 @@ app.use(expressSession({
 app.use(productosApiRouter);
 app.use(mensajesApiRouter);
 app.use(userApiRouter);
+app.use('/api/randoms', randomsApiRouter);
 
 app.get('/quiensoy', (req,res) => {
     if(req.session.loguedUser){
@@ -75,5 +77,19 @@ server.listen(configPort.p, () => {
 });
 server.on("error", error => console.log(`Error en servidor ${error}`));
 
+app.get('/info', async (req, res) => {
+    
+// res.send(
+//     'Argumentos de entrada:'  + process.platform;
+//     'Nombre de la plataforma (sistema operativo):' + process.platform;
+//     'Versión de node.js:' + process.version;
+//     'Memoria total reservada (rss):' + process.memoryUsage();
+//     'Path de ejecución:'
+//     'Process id:' + process.pid;
+//     'Carpeta del proyecto:' + process.cwd();
 
+// )
+
+
+});
 
