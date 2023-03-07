@@ -16,6 +16,7 @@ const { mainPage } = require('./pages/loadPages.js');
 const path = require ('path');
 
 const { configPort } = require('./enviroment.js');
+const { ID, NODEV, FILE, PTH, MEM } = require('./config.js');
 
 
 const app = express();
@@ -35,7 +36,7 @@ app.use(expressSession({
 app.use(productosApiRouter);
 app.use(mensajesApiRouter);
 app.use(userApiRouter);
-app.use('/api/randoms', randomsApiRouter);
+app.use(randomsApiRouter);
 
 app.get('/quiensoy', (req,res) => {
     if(req.session.loguedUser){
@@ -78,17 +79,26 @@ server.listen(configPort.p, () => {
 server.on("error", error => console.log(`Error en servidor ${error}`));
 
 app.get('/info', async (req, res) => {
-    
-// res.send(
-//     'Argumentos de entrada:'  + process.platform;
-//     'Nombre de la plataforma (sistema operativo):' + process.platform;
-//     'Versión de node.js:' + process.version;
-//     'Memoria total reservada (rss):' + process.memoryUsage();
-//     'Path de ejecución:'
-//     'Process id:' + process.pid;
-//     'Carpeta del proyecto:' + process.cwd();
 
-// )
+    // 'Argumentos de entrada:'  + process.platform;
+    // 'Nombre de la plataforma (sistema operativo):' + process.platform
+    // 'Memoria total reservada (rss):' + process.memoryUsage()
+
+    // Memoria total reservada (rss): ${MEM}
+    // Argumentos de entrada: ${PLAT}
+        // Memoria total reservada (rss): ${MEM}
+// Nombre de la plataforma (sistema operativo): ${SISTEM}
+
+    
+res.send(`       
+        <p> <b>Argumentos de entrada:</b>  </p>
+        <p> <b>Nombre de la plataforma (sistema operativo):</b>   </p>
+        <p> <b>Versión de node.js:</b> ${NODEV} </p>
+        <p> <b>Memoria total reservada (rss):</b> ${MEM} </p>
+        <p> <b>Path de ejecución:</b> ${PTH}</p>
+        <p> <b>Process id:</b> ${ID}</p>
+        <p> <b>Carpeta del proyecto:</b> ${FILE}</p>
+    `)
 
 
 });
