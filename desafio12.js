@@ -79,16 +79,6 @@ server.listen(configPort.p, () => {
 server.on("error", error => console.log(`Error en servidor ${error}`));
 
 app.get('/info', async (req, res) => {
-
-    // 'Argumentos de entrada:'  + process.platform;
-    // 'Nombre de la plataforma (sistema operativo):' + process.platform
-    // 'Memoria total reservada (rss):' + process.memoryUsage()
-
-    // Memoria total reservada (rss): ${MEM}
-    // Argumentos de entrada: ${PLAT}
-        // Memoria total reservada (rss): ${MEM}
-// Nombre de la plataforma (sistema operativo): ${SISTEM}
-
     
 res.send(`       
         <p> <b>Argumentos de entrada:</b>  </p>
@@ -99,7 +89,5 @@ res.send(`
         <p> <b>Process id:</b> ${ID}</p>
         <p> <b>Carpeta del proyecto:</b> ${FILE}</p>
     `)
-
-
 });
 
