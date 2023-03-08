@@ -3,10 +3,8 @@ const Router = require('express');
 const { fork } = require('child_process');
 const randomsApiRouter = new Router()
 
-// let visits = 0;
 
-// const longProcess = fork('./helpers/longProcess.js');
-
+const longProcess = fork('./helpers/longProcess.js');
 
 
 randomsApiRouter.get('/api/randoms', async (req, res) => {
